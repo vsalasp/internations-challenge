@@ -23,4 +23,9 @@ class IntObject
     {
         $this->value = $value;
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->getValue();
+    }
 }
