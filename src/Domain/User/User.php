@@ -31,7 +31,6 @@ class User implements JsonSerializable
         return $this->name;
     }
 
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
         return [

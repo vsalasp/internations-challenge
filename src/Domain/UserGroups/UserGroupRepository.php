@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Domain\UserGroups;
+
+use App\Domain\ValueObjects\ID;
+
+interface UserGroupRepository
+{
+    /**
+     * @return UserGroup[]
+     */
+    public function findAll(): array;
+
+    /**
+     * @param ID $id
+     * @return UserGroup
+     * @throws UserGroupNotFoundException
+     */
+    public function findUserGroupOfId(ID $id): UserGroup;
+
+    /**
+     * @param UserGroup $group
+     * @return UserGroup
+     * @throws UserGroupAlreadyExistsException
+     */
+    public function addUserGroup(UserGroup $group): UserGroup;
+
+    /**
+     * @param UserGroup $group
+     * @return void
+     */
+    public function deleteUserGroup(UserGroup $group): void;
+}
