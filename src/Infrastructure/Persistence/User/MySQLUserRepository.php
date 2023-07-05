@@ -75,4 +75,14 @@ class MySQLUserRepository implements UserRepository
             $user->getIsAdmin()
         );
     }
+
+    public function deleteUser(ID $userId): void
+    {
+        $this->findUserOfId($userId);
+
+        $id = $userId->getValue();
+        $statement = $this->database->prepare('DELETE FROM users WHERE id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

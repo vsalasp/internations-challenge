@@ -26,4 +26,10 @@ interface UserRepository
      * @throws UserAlreadyExistsException
      */
     public function addUser(User $user): User;
+
+    /**
+     * @param ID $userId
+     * @throws UserNotFoundException
+     */
+    public function deleteUser(ID $userId): void;
 }
