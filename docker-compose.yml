@@ -35,6 +35,10 @@ services:
         image: mysql:latest
         env_file:
             - .env
+        ports:
+            - "33060:3306"
         networks:
             - network
+        volumes:
+            - ./databaseFiles:/docker-entrypoint-initdb.d
 
