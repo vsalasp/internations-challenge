@@ -13,9 +13,8 @@ class AddUserAction extends UserAction
     {
         $body = $this->getFormData();
         $name = new Name($body['name']);
-        $isAdmin = new BoolObject($body['isAdmin']);
 
-        $user = $this->userRepository->addUser(new User(null, $name, $isAdmin));
+        $user = $this->userRepository->addUser(new User(null, $name));
 
         return $this->respondWithData($user);
     }

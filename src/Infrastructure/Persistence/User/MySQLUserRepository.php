@@ -6,7 +6,6 @@ use App\Domain\User\User;
 use App\Domain\User\UserAlreadyExistsException;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
-use App\Domain\ValueObjects\Common\BoolObject;
 use App\Domain\ValueObjects\ID;
 use App\Domain\ValueObjects\Name;
 use PDO;
@@ -27,7 +26,6 @@ class MySQLUserRepository implements UserRepository
             $result[] = new User(
                 new ID($rows['id']),
                 new Name($rows['name']),
-                new BoolObject($rows['is_admin']),
             );
         }
         return $result;
@@ -46,15 +44,13 @@ class MySQLUserRepository implements UserRepository
         }
         return new User(
             new ID($row['id']),
-            new Name($row['name']),
-            new BoolObject($row['is_admin']),
+            new Name($row['name'])
         );
     }
 
     public function addUser(User $user): User
     {
         $name = $user->getName()->getValue();
-        $isAdmin = $user->getIsAdmin()->isValue();
         $statement = $this->database->prepare('SELECT * FROM users WHERE name = :name LIMIT 1');
         $statement->bindParam('name', $name, PDO::PARAM_STR);
         $statement->execute();
@@ -64,15 +60,13 @@ class MySQLUserRepository implements UserRepository
             throw new UserAlreadyExistsException();
         }
 
-        $statement = $this->database->prepare('INSERT INTO users (name, is_admin) VALUES (:name, :isAdmin)');
+        $statement = $this->database->prepare('INSERT INTO users (name) VALUES (:name)');
         $statement->bindParam('name', $name, PDO::PARAM_STR);
-        $statement->bindParam('isAdmin', $isAdmin, PDO::PARAM_BOOL);
         $statement->execute();
 
         return new User(
             new ID($this->database->lastInsertId()),
             $user->getName(),
-            $user->getIsAdmin()
         );
     }
 

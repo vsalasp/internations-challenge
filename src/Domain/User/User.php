@@ -15,13 +15,10 @@ class User implements JsonSerializable
 
     private Name $name;
 
-    private BoolObject $isAdmin;
-
-    public function __construct(?ID $id, Name $name, BoolObject $isAdmin)
+    public function __construct(?ID $id, Name $name)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->isAdmin = $isAdmin;
     }
 
     public function getID(): ID
@@ -34,18 +31,12 @@ class User implements JsonSerializable
         return $this->name;
     }
 
-    public function getIsAdmin(): BoolObject
-    {
-        return $this->isAdmin;
-    }
-
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id->getValue(),
             'name' => $this->name->getValue(),
-            'isAdmin' => $this->isAdmin->isValue(),
         ];
     }
 }
