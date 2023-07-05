@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Domain\ValueObjects\ID;
+
 interface UserRepository
 {
     /**
@@ -12,9 +14,16 @@ interface UserRepository
     public function findAll(): array;
 
     /**
-     * @param int $id
+     * @param ID $id
      * @return User
      * @throws UserNotFoundException
      */
-    public function findUserOfId(int $id): User;
+    public function findUserOfId(ID $id): User;
+
+    /**
+     * @param User $user
+     * @return User
+     * @throws UserAlreadyExistsException
+     */
+    public function addUser(User $user): User;
 }
