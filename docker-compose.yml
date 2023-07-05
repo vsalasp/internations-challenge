@@ -1,26 +1,40 @@
 version: '3.7'
 
-volumes:
-    logs:
-        driver: local
+networks:
+    network:
+        driver: bridge
 
 services:
-    slim:
-        image: php:8-alpine
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
         working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
-        ports:
-            - "8080:8080"
         volumes:
             - .:/var/www
-            - logs:/var/www/logs
+        networks:
+            - network
         depends_on:
             - db
+            - nginx
+
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8005:80"
+            - "8006:443"
+        networks:
+            - network
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
 
     db:
         image: mysql:latest
         env_file:
             - .env
+        networks:
+            - network
 
