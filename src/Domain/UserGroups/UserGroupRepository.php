@@ -27,13 +27,12 @@ interface UserGroupRepository
      */
     public function addUserGroup(UserGroup $group): UserGroup;
 
-
     /**
-     * @param ID $groupId
-     * @param UserList $users
+     * @param UserGroup $group
+     * @param User $user
      * @return void
      */
-    public function addMembersToUserGroupOfId(ID $groupId, UserList $users): void;
+    public function addMemberToUserGroup(UserGroup $group, User $user): void;
 
     /**
      * @param UserGroup $group

@@ -82,10 +82,6 @@ class MySQLUserGroupRepository extends MySQLRepository implements UserGroupRepos
         $statement->bindParam('name', $name, PDO::PARAM_STR);
         $statement->execute();
 
-        if (!empty($group->getMembers()->getValue())) {
-            $this->addMembersToUserGroupOfId($group->getId(), $group->getMembers());
-        }
-
         return new UserGroup(
             new ID($this->getConnection()->lastInsertId()),
             $group->getName(),
@@ -93,17 +89,15 @@ class MySQLUserGroupRepository extends MySQLRepository implements UserGroupRepos
         );
     }
 
-    public function addMembersToUserGroupOfId(ID $groupId, UserList $users): void
+    public function addMemberToUserGroup(UserGroup $group, User $user): void
     {
-        $sql = "INSERT INTO user_group_members (group_id, user_id) VALUES ";
-        $sql .= implode(', ', array_fill(0, count($users->getValue()), "(?, ?)"));
-        $statement = $this->getConnection()->prepare($sql);
-        foreach ($users->getValue() as $index => $user) {
-            $userId = $user->getID();
-            $statement->bindParam($index * 2 + 1, $groupId);
-            $statement->bindParam($index * 2 + 2, $userId);
-        }
-
+        $groupID = $group->getId()->getValue();
+        $userId = $user->getID()->getValue();
+        $statement = $this->getConnection()->prepare(
+            "INSERT INTO user_group_members (group_id, user_id) VALUES (:groupId, :userId)"
+        );
+        $statement->bindParam("groupId", $groupID);
+        $statement->bindParam("userId", $userId);
         $statement->execute();
     }
 

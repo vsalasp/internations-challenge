@@ -7,6 +7,7 @@ use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\UserGroups\AddUserGroupAction;
+use App\Application\Actions\UserGroups\AssignMemberToGroupAction;
 use App\Application\Actions\UserGroups\DeleteUserGroupAction;
 use App\Application\Actions\UserGroups\ListUserGroupsAction;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -36,5 +37,6 @@ return function (App $app) {
         $group->get('', ListUserGroupsAction::class);
         $group->post('', AddUserGroupAction::class);
         $group->delete('/{id}', DeleteUserGroupAction::class);
+        $group->post('/{id}/user', AssignMemberToGroupAction::class);
     });
 };
