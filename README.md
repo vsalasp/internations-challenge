@@ -1,42 +1,44 @@
-# Slim Framework 4 Skeleton Application
+# Internations Coding Challenge
 
-[![Coverage Status](https://coveralls.io/repos/github/slimphp/Slim-Skeleton/badge.svg?branch=master)](https://coveralls.io/github/slimphp/Slim-Skeleton?branch=master)
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation. It also uses the Monolog logger.
+### By: Victor Salas Padilha
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+## First steps
+This project uses composer for library management for PHP.
 
-## Install the Application
+To minimize problems, there is a Docker solution to run everything.
+This requires [Docker Compose](https://docs.docker.com/compose) to be installed.
 
-Run this command from the directory in which you want to install your new Slim Framework application. You will require PHP 7.4 or newer.
+Once you have Docker Compose installed and set up, run this command to build the image.
 
-```bash
-composer create-project slim/slim-skeleton [my-app-name]
+```shell
+docker-compose build
 ```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writable.
-
-To run the application in development, you can run these commands 
-
-```bash
-cd [my-app-name]
-composer start
+Then proceed to install the dependencies required by this project
+```shell
+docker-compose run app composer install
 ```
 
-Or you can use `docker-compose` to run the app with `docker`, so you can run these commands:
-```bash
-cd [my-app-name]
+## Starting docker
+
+---
+To start the docker image with the web server, execute the following command:
+
+```shell
 docker-compose up -d
 ```
-After that, open `http://localhost:8080` in your browser.
 
-Run this command in the application directory to run the test suite
+This will start the docker services and the API will be available on `http://localhost:8005`
 
-```bash
-composer test
-```
+## Inscomnia file
 
-That's it! Now go build something cool.
+---
+There's an Insomnia Collection file (`Insomnia_collection.yml`) available with examples to all API routes of the project. 
+
+## Database Schema
+
+---
+
+Here's the database model used for this project
+![alt text](https://drive.google.com/uc?id=1uhW7i6bFTtS2X5dZYE0j51xW2gbnCINo)

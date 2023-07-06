@@ -1,26 +1,8 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim Framework skeleton application for rapid development",
-    "keywords": [
-        "microframework",
-        "rest",
-        "router",
-        "psr7"
-    ],
-    "homepage": "http://github.com/slimphp/Slim-Skeleton",
+    "name": "vsalas/internations-challenge",
+    "description": "",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Josh Lockhart",
-            "email": "info@joshlockhart.com",
-            "homepage": "http://www.joshlockhart.com/"
-        },
-        {
-            "name": "Pierre Berube",
-            "email": "pierre@lgse.com",
-            "homepage": "http://www.lgse.com/"
-        }
-    ],
+    "authors": [],
     "require": {
         "php": "^8.0",
         "ext-json": "*",
@@ -57,7 +39,6 @@
         }
     },
     "scripts": {
-        "start": "php -S localhost:8080 -t public",
         "test": "phpunit"
     }
 }

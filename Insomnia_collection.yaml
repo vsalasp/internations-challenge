@@ -1,0 +1,251 @@
+_type: export
+__export_format: 4
+__export_date: 2023-07-06T10:27:03.002Z
+__export_source: insomnia.desktop.app:v2023.4.0
+resources:
+  - _id: req_98d60aeea0a840108664cb99d4518bf3
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688637660097
+    created: 1688637229311
+    url: "{{url}}/groups"
+    name: List User Groups
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1688637229311
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    parentId: null
+    modified: 1688592219935
+    created: 1688592219935
+    name: Internations
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_e86c633e863a4d17b1c1c11514576c2c
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688638384875
+    created: 1688637707338
+    url: "{{url}}/groups/2"
+    name: Delete User Group
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1688625990821.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ad6f56584a984160955fa4962c6335d6
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688637689720
+    created: 1688637680358
+    url: "{{url}}/groups"
+    name: Add User group
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "group1"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1688614752332.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3aad92e3f76d43e287c3631993e8bc31
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688638368047
+    created: 1688638355722
+    url: "{{url}}/groups/2/user"
+    name: Assign  User to group
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"userId": 1
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1688603513843.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d7bd618c07f34c90a0f84b7e0e0c85fb
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688638781943
+    created: 1688638770660
+    url: "{{url}}/groups/2/user/1"
+    name: Remove User from group
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"userId": 1
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1688597894598.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2dce3fe0d42940b2af4948938648fb3b
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688596513900
+    created: 1688592275354
+    url: "{{url}}/users"
+    name: Add User
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Lolo"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1688592275354
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_97f46984f7d74b7594bd4360f2b83115
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688592272328
+    created: 1688592223592
+    url: "{{url}}/users"
+    name: Fetch Users
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1688592223592
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_69bc761bc0a74124b1fe40794c2c83cc
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688596184098
+    created: 1688596182584
+    url: "{{url}}/users/1"
+    name: Fetch User
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1656263095367
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_04a9446d5ce64518a598521aae4e3d5a
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688596208611
+    created: 1688596191072
+    url: "{{url}}/users/2"
+    name: Delete User
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1648180813310.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_22c540be5a149cbbac3eae5b49a00d671d3fcab0
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688592249761
+    created: 1688592219938
+    name: Base Environment
+    data:
+      url: http://localhost:8005
+    dataPropertyOrder:
+      "&":
+        - url
+    color: null
+    isPrivate: false
+    metaSortKey: 1688592219938
+    _type: environment
+  - _id: jar_22c540be5a149cbbac3eae5b49a00d671d3fcab0
+    parentId: wrk_234cd6dc6d0444f5a0f68dfef5f5bc91
+    modified: 1688592219939
+    created: 1688592219939
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
