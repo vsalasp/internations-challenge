@@ -49,8 +49,9 @@ class MySQLUserGroupRepository extends MySQLRepository implements UserGroupRepos
 
     public function findUserGroupOfId(ID $id): UserGroup
     {
+        $userGroupID = $id->getValue();
         $statement = $this->getConnection()->prepare('SELECT * from user_groups WHERE id = :id LIMIT 1');
-        $statement->bindValue('id', $id, PDO::PARAM_INT);
+        $statement->bindValue('id', $userGroupID, PDO::PARAM_INT);
         $statement->execute();
         $row = $statement->fetch();
 
@@ -108,7 +109,7 @@ class MySQLUserGroupRepository extends MySQLRepository implements UserGroupRepos
 
     public function deleteUserGroup(UserGroup $group): void
     {
-        $id = $group->getId();
+        $id = $group->getId()->getValue();
         $statement = $this->getConnection()->prepare('DELETE FROM user_groups WHERE id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
