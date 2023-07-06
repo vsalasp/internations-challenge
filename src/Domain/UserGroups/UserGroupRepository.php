@@ -2,7 +2,9 @@
 
 namespace App\Domain\UserGroups;
 
+use App\Domain\User\User;
 use App\Domain\ValueObjects\ID;
+use App\Domain\ValueObjects\UserList;
 
 interface UserGroupRepository
 {
@@ -24,6 +26,14 @@ interface UserGroupRepository
      * @throws UserGroupAlreadyExistsException
      */
     public function addUserGroup(UserGroup $group): UserGroup;
+
+
+    /**
+     * @param ID $groupId
+     * @param UserList $users
+     * @return void
+     */
+    public function addMembersToUserGroupOfId(ID $groupId, UserList $users): void;
 
     /**
      * @param UserGroup $group

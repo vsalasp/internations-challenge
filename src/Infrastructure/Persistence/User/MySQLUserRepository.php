@@ -8,18 +8,14 @@ use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
 use App\Domain\ValueObjects\ID;
 use App\Domain\ValueObjects\Name;
+use App\Infrastructure\Persistence\Common\MySQLRepository;
 use PDO;
 
-class MySQLUserRepository implements UserRepository
+class MySQLUserRepository extends MySQLRepository implements UserRepository
 {
-    public function __construct(
-        private PDO $database
-    ) {
-    }
-
     public function findAll(): array
     {
-        $statement = $this->database->query('SELECT * FROM users');
+        $statement = $this->getConnection()->query('SELECT * FROM users');
 
         $result = [];
         foreach ($statement->fetchAll() as $rows) {
@@ -34,7 +30,7 @@ class MySQLUserRepository implements UserRepository
     public function findUserOfId(ID $id): User
     {
         $userId = $id->getValue();
-        $statement = $this->database->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
+        $statement = $this->getConnection()->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
         $statement->bindParam('id', $userId, PDO::PARAM_INT);
         $statement->execute();
         $row = $statement->fetch();
@@ -51,7 +47,7 @@ class MySQLUserRepository implements UserRepository
     public function addUser(User $user): User
     {
         $name = $user->getName()->getValue();
-        $statement = $this->database->prepare('SELECT * FROM users WHERE name = :name LIMIT 1');
+        $statement = $this->getConnection()->prepare('SELECT * FROM users WHERE name = :name LIMIT 1');
         $statement->bindParam('name', $name, PDO::PARAM_STR);
         $statement->execute();
         $row = $statement->fetch();
@@ -60,12 +56,12 @@ class MySQLUserRepository implements UserRepository
             throw new UserAlreadyExistsException();
         }
 
-        $statement = $this->database->prepare('INSERT INTO users (name) VALUES (:name)');
+        $statement = $this->getConnection()->prepare('INSERT INTO users (name) VALUES (:name)');
         $statement->bindParam('name', $name, PDO::PARAM_STR);
         $statement->execute();
 
         return new User(
-            new ID($this->database->lastInsertId()),
+            new ID($this->getConnection()->lastInsertId()),
             $user->getName(),
         );
     }
@@ -75,7 +71,7 @@ class MySQLUserRepository implements UserRepository
         $this->findUserOfId($userId);
 
         $id = $userId->getValue();
-        $statement = $this->database->prepare('DELETE FROM users WHERE id = :id');
+        $statement = $this->getConnection()->prepare('DELETE FROM users WHERE id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
     }

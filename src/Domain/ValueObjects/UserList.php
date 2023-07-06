@@ -17,6 +17,11 @@ class UserList implements JsonSerializable
         $this->validate();
     }
 
+    public function getValue(): array
+    {
+        return $this->users;
+    }
+
     private function validate(): void
     {
         foreach ($this->users as $user) {

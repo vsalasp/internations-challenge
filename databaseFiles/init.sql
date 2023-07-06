@@ -8,7 +8,7 @@ CREATE TABLE users
 CREATE TABLE user_groups
 (
     id   INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE user_group_members
