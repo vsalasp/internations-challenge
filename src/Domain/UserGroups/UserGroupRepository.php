@@ -36,6 +36,13 @@ interface UserGroupRepository
 
     /**
      * @param UserGroup $group
+     * @param User $user
+     * @return void
+     */
+    public function removeUserFromGroup(UserGroup $group, User $user): void;
+
+    /**
+     * @param UserGroup $group
      * @return void
      */
     public function deleteUserGroup(UserGroup $group): void;

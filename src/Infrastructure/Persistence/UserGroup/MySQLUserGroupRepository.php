@@ -101,6 +101,18 @@ class MySQLUserGroupRepository extends MySQLRepository implements UserGroupRepos
         $statement->execute();
     }
 
+    public function removeUserFromGroup(UserGroup $group, User $user): void
+    {
+        $groupID = $group->getId()->getValue();
+        $userId = $user->getID()->getValue();
+        $statement = $this->getConnection()->prepare(
+            "DELETE FROM user_group_members WHERE group_id = :groupId and user_id = :userId"
+        );
+        $statement->bindParam("groupId", $groupID);
+        $statement->bindParam("userId", $userId);
+        $statement->execute();
+    }
+
     public function deleteUserGroup(UserGroup $group): void
     {
         $id = $group->getId()->getValue();
